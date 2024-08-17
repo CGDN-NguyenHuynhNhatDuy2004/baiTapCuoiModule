@@ -70,7 +70,7 @@
     </div>
 <div style="display: flex; flex-direction: column;">
     <form >
-        <!--        <label for="imageInput">Image Path</label>-->
+
         <input  type="text" id="imagePath" readonly onclick="document.getElementById('image').click();" placeholder="Click to select an image">
         <input type="file" id="image" name="imageUpload" accept="image/*" style="display: none;" onchange="previewImage(event)">
         <br><br>
@@ -89,8 +89,8 @@
     <tr>
         <th>Name Drink</th>
         <th>Price</th>
-        <th>Type Drink</th>
-        <th>Drink Photo</th>
+        <th>Type of Drink</th>
+        <th> Photo</th>
         <th colspan="2">Action</th>
     </tr>
     </thead>
@@ -102,7 +102,7 @@
 <section class="footer">
     <div class="footer-box">
         <h2>Coffee Shop</h2>
-        <p>hjdsbhjvgdsjvgdsgv</p>
+<!--        <p>hjdsbhjvgdsjvgdsgv</p>-->
         <div class="social">
             <a href="#"><i class='bx bxl-facebook'></i></a>
             <a href="#"><i class='bx bxl-instagram'></i></a>
@@ -185,8 +185,8 @@
                 "<td>" + arr[i].getPrice() + "</td>" +
                 "<td>" + arr[i].getType() + "</td>" +
                 "<td><img src='" + arr[i].getImage() + "' alt='" + arr[i].getName() + "' style='width: 50px;'></td>" +
-                "<td><button onclick='updateProduct(" + i + ")'  >Edit</button></td>" +
-                "<td><button onclick='deleteProduct(" + i + ")'>Delete</button></td>" +
+                "<td><button onclick='updateProduct(" + i + ")'  ><i class='bx bxs-edit-alt'></i></button></td>" +
+                "<td><button onclick='deleteProduct(" + i + ")'><i class='bx bxs-trash' ></i></button></td>" +
                 "</tr>";
         }
         document.getElementById("tbody").innerHTML = str;
@@ -224,7 +224,6 @@
         let productPrice = +prompt("Nhập giá tiền", array[i].getPrice());
         let productType = prompt("Nhập loại đồ uống", array[i].getType());
 
-
         let tempInput = document.createElement("input");
         tempInput.type = "file";
         tempInput.accept = "image/*";
@@ -235,17 +234,19 @@
                 let productImage = URL.createObjectURL(selectedFile);
                 array[i].setImage(productImage);
             }
-
-            array[i].setName(productName);
-            array[i].setPrice(productPrice);
-            array[i].setType(productType);
-
-            displayProduct(array);
         };
 
 
         tempInput.click();
+
+
+        array[i].setName(productName);
+        array[i].setPrice(productPrice);
+        array[i].setType(productType);
+
+        displayProduct(array);
     }
+
     function previewImage(event) {
         let imageInput = event.target;
         let imagePreview = document.getElementById("imagePreview");
